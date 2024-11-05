@@ -8,8 +8,9 @@ Simply download this repo or clone it, and then execute: `docker compose up --bu
 By default, it listens on port `8080` and `/dev/ttyUSB0`. Feel free to re-route it via the `docker-compose.yml` file though.
 
 ### 'X' doesn't work! What gives?
-This project wasn't actually tested on other machines. I needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
+This project wasn't actually tested on other machines. I just needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
 Therefore, if you have any suggestions, please make a PR!
+I know, the code isn't the pretties, and it lacks stuff, but it works. Feel free to adapt it to your needs.
 
 ---
 
