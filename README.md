@@ -7,9 +7,14 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 
 
 ### How do I run it?
-
 Simply download this repo or clone it, and then execute: `docker compose up --build -d`. In a few moments, it should come up at `localhost:8080`.
 By default, it listens on port `8080` and `/dev/ttyUSB0`. Feel free to re-route it via the `docker-compose.yml` file though.
+
+### Which devices are compatible?
+I'm not sure, but most likely most of their lineup should. I'm using a "Nobreak Power Sinus II".
+
+### Why don't you use `nut` instead?
+I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from PowerView, but I hadn't time for that. 
 
 ### 'X' doesn't work! What gives?
 This project wasn't actually tested on other machines. I just needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
