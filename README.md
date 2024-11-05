@@ -3,6 +3,9 @@
 Quick and dirty solution to run the "SMS PowerView" Java app inside a docker container.
 Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it should straight up work. Just start the container, that's all.
 
+![smspowerview](https://github.com/Fusseldieb/sms_powerview_docker/blob/main/smspowerview.png)
+
+
 ### How do I run it?
 
 Simply download this repo or clone it, and then execute: `docker compose up --build -d`. In a few moments, it should come up at `localhost:8080`.
