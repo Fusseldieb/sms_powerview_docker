@@ -10,7 +10,7 @@ By default, it listens on port `8080` and `/dev/ttyUSB0`. Feel free to re-route 
 ### 'X' doesn't work! What gives?
 This project wasn't actually tested on other machines. I just needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
 Therefore, if you have any suggestions, please make a PR!
-I know, the code isn't the prettiest you've seen in your life, and it lacks stuff, but it works. Feel free to adapt it to your needs.
+I know, the code isn't the prettiest you've seen in your life, and it lacks stuff, but it works. The service, for example, is kept open by tailing /dev/null! Feel free to adapt it to your needs.
 
 ---
 
