@@ -11,7 +11,7 @@ Simply download this repo or clone it, and then execute: `docker compose up --bu
 By default, it listens on port `8080` and `/dev/ttyUSB0`. Feel free to re-route it via the `docker-compose.yml` file though.
 
 ### Which devices are compatible?
-I'm not sure, but most likely most of their lineup should. I'm using a "Nobreak Power Sinus II".
+I'm not sure, but most likely most of their lineup should. I'm using a "SMS Power Sinus II".
 
 ### Why don't you use `nut` instead?
 I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from PowerView, but I hadn't time for that. 
