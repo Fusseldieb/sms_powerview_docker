@@ -12,6 +12,8 @@ This project wasn't actually tested on other machines. I just needed a quick way
 Therefore, if you have any suggestions, please make a PR!
 I know, the code isn't the prettiest you've seen in your life, and it lacks stuff, but it works. The service, for example, is kept open by tailing /dev/null! ;)
 
+Special thanks to: https://ubuntuforum-br.org/index.php?topic=114513.0
+
 ---
 
 This 'project' is in no way, shape of form associated with Legrand or SMS. Use it at your own risk.
