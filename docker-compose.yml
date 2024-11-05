@@ -1,0 +1,12 @@
+version: '3'
+services:
+  powerview:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ups-monitor-spv
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
