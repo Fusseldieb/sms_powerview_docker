@@ -21,6 +21,9 @@ This project wasn't actually tested on other machines. I just needed a quick way
 Therefore, if you have any suggestions, please make a PR!
 I know, the code isn't the prettiest you've seen in your life, and it lacks stuff, but it works. The service, for example, is kept open by tailing /dev/null! ;)
 
+#### Other remarks
+The .tar.gz from their tool is from an older version of PowerView. There is no particular reason, though.
+
 Special thanks to 'Sampayu': https://ubuntuforum-br.org/index.php?topic=114513.0
 
 ---
