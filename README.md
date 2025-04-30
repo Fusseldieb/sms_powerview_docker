@@ -5,10 +5,56 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 
 ![smspowerview](https://github.com/Fusseldieb/sms_powerview_docker/blob/main/smspowerview.png)
 
+---
+
+### Features
+
+- Provides the official SMS PowerView dashboard
+- Keeps the host system free of dependencies thanks to Docker
+- Provides a JSON endpoint to the system monitor - great for use in third-party software, such as Home Assistant, etc.
 
 ### How do I run it?
 Simply download this repo or clone it, and then execute: `docker compose up --build -d`. In a few moments, it should come up at `localhost:8080`.
 By default, it listens on port `8080` and `/dev/ttyUSB0`. Feel free to re-route it via the `docker-compose.yml` file though.
+
+### JSON Endpoint
+
+`http://<server>:5000/monitor`
+
+```
+{
+  "Carga da Bateria": {
+    "current": "100%",
+    "max": "100",
+    "min": "100"
+  },
+  "Frequência de Saída": {
+    "current": "60Hz",
+    "max": "60",
+    "min": "59"
+  },
+  "Potência de Saída": {
+    "current": "25%",
+    "max": "27",
+    "min": "25"
+  },
+  "Temperatura": {
+    "current": "22ºC",
+    "max": "23",
+    "min": "22"
+  },
+  "Tensão de Entrada": {
+    "current": "216VAC",
+    "max": "216",
+    "min": "211"
+  },
+  "Tensão de Saída": {
+    "current": "219VAC",
+    "max": "219",
+    "min": "213"
+  }
+}
+```
 
 ### Which devices are compatible?
 I'm not sure, but most likely most of their lineup should. I'm using a "SMS Power Sinus II".
