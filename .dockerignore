@@ -4,5 +4,3 @@ __pycache__/
 .DS_Store
 .git
 .gitignore
-*.tar.gz
-*.exp
