@@ -10,6 +10,6 @@ services:
       - "${JSON_PORT:-5000}:5000"
     volumes:
       - ./overrides/database.yap:/opt/powerview/banco/banco_de_dados.yap
-      - ./proxy/polling_endpoint.py:/opt/app/polling_endpoint.py
+      - ./proxy/polling_endpoint.py:/opt/app/polling_endpoint.py # Debugging
     devices:
       - "${DEVICE_PATH:-/dev/null}:${DEVICE_PATH:-/dev/null}"

@@ -12,14 +12,14 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 - Provides the official SMS PowerView dashboard
 - Provides a JSON endpoint to the system monitor - great for use in third-party software, such as Home Assistant, etc.
 - Latest known version of SMS PowerView
-- 
+- Internal known-working database
 - Keeps the host system free of dependencies thanks to Docker
 
 ### How do I run it?
 - Simply download this repo or clone it
-- Copy .env.example to .env and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number).
+- Copy `.env.example` to `.env` and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number).
 - Execute: `docker compose up --build -d`. In a few moments it should then come up at `localhost:8080`.
-By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `-.env` file though. Use the `.env.example` as a reference.
+By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
 
 ### JSON Endpoint
 
@@ -82,6 +82,7 @@ docker-compose up -d
 
 ### Which devices are compatible?
 Most likely most of their (older) lineup should. I'm using a "SMS Power Sinus II".
+
 Further compatible devices, as per documentation: 
 - New Station Expert
 - Net 4+ Expert
@@ -94,6 +95,7 @@ Further compatible devices, as per documentation:
 - Daker
 - Sinus Triad NG
 - Keor BR
+
 Please open an Issue if there's any incorrect information.
 
 ### Why don't you use `nut` instead?
