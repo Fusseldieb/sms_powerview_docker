@@ -30,13 +30,13 @@ STATUS_ORDER = [
 ]
 
 STATUS_KEY_MAP = {
-    "statusups": "ups",
-    "statusbateria": "battery",
+    "statusups": "battery_fault",
+    "statusbateria": "battery_charge",
     "statusredeeletrica": "power_grid",
-    "statusteste": "self_test",
-    "statusalerta": "alert",
-    "statusgatewaymobile": "mobile_gateway",
-    "statuspotenciaelevada": "high_power"
+    "statusteste": "battery_selftest",
+    "statusalerta": "alerta24h_enabled",
+    "statusgatewaymobile": "mobile_server_enabled",
+    "statuspotenciaelevada": "high_ups_load",
 }
 
 def login(session):
