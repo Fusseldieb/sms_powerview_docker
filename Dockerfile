@@ -41,4 +41,8 @@ RUN rm -rf /opt/sms
 
 RUN chmod +x /entrypoint.sh
 
+# Creates a copy of the database, so the original one is not modified
+# The database will be copies once again to another location when entrypoint.sh is executed
+COPY overrides/database.yap /opt/db/database.yap
+
 ENTRYPOINT ["/entrypoint.sh"]

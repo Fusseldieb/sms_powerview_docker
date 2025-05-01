@@ -17,9 +17,12 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 
 ### How do I run it?
 - Simply download this repo or clone it
-- Copy `.env.example` to `.env` and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number).
-- Execute: `docker compose up --build -d`. In a few moments it should then come up at `localhost:8080`.
+- Copy `.env.example` to `.env` and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number). Leave blank for no connection.
+- Execute: `docker compose up --build -d`. In a few moments it should then come up at `localhost:8080
+`.
 By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
+
+Stopping the container is as easy as using `docker compose down`.
 
 ### JSON Endpoint
 
@@ -71,6 +74,12 @@ By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `
   }
 }
 ```
+
+### Protecting using a password
+If you want to protect the SMS PowerView interface with a password, you can do that. For that you'll need to also set the password in `.env` using the `WEB_PASSWORD` variable in order for JSON requests to authenticate correctly. 
+
+### Starting over
+As you might know, this application has a database, and with sufficiently wrong configurations you could get locked out. Therefore, to reset the state, just delete the `db` folder and restart the container, which will re-initialize the database to a known-good state.
 
 ### Developing
 If you're changing files in the project structure, you may need to rebuild the image. If that's the case, run:
