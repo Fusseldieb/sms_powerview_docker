@@ -5,6 +5,7 @@ import re
 import signal
 import sys
 import os
+import html
 
 def handle_sigterm(signum, frame):
     print("Received SIGTERM, shutting down...")
@@ -129,8 +130,9 @@ def get_status():
     # Extract and normalize broadcast message
     broadcast_match = re.search(r'\$\("#mensagemBroadcast"\)\.html\("([^"]+)"\)', info_text)
     if broadcast_match:
-        raw_message = broadcast_match.group(1).strip().lower()
-        normalized_message = BROADCAST_MESSAGE_MAP.get(raw_message, raw_message)
+        raw_message = broadcast_match.group(1)
+        decoded_message = html.unescape(raw_message).strip().lower().replace("\\n", "").replace("\n", "").strip()
+        normalized_message = BROADCAST_MESSAGE_MAP.get(decoded_message, decoded_message)
         info_status["broadcast_message"] = normalized_message
 
     if info_status.get("broadcast_message") == "bad_battery" and info_status.get("battery_fault") == "Off":
