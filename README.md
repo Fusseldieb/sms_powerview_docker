@@ -31,45 +31,46 @@ Stopping the container is as easy as using `docker compose down`.
 ```
 {
   "info": {
-    "alert": "Off",
-    "battery": "Off",
-    "high_power": "Off",
-    "mobile_gateway": "Off",
-    "power_grid": "Off",
-    "self_test": "Off",
-    "time_for_shutdown": "00:00:00",
-    "ups": "Off"
+    "alerta24h_enabled": "Off",
+    "battery_charge": "On",
+    "battery_fault": "Off",
+    "battery_selftest": "Off",
+    "broadcast_message": "bad_battery",
+    "high_ups_load": "Off",
+    "mobile_server_enabled": "Off",
+    "power_grid_connected": "On",
+    "time_for_shutdown": "00:00:00"
   },
   "status": {
     "battery_charge": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "98",
+      "max": "98",
+      "min": "12"
     },
     "input_voltage": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "219",
+      "max": "219",
+      "min": "217"
     },
     "output_frequency": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "60",
+      "max": "60",
+      "min": "60"
     },
     "output_voltage": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "221",
+      "max": "221",
+      "min": "220"
     },
     "temperature": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "32",
+      "max": "32",
+      "min": "2"
     },
     "ups_load": {
-      "current": "0",
-      "max": "0",
-      "min": "0"
+      "current": "36",
+      "max": "36",
+      "min": "36"
     }
   }
 }
