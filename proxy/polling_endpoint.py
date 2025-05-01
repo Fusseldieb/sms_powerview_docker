@@ -40,9 +40,12 @@ STATUS_KEY_MAP = {
     "statuspotenciaelevada": "high_ups_load",
 }
 
+# TODO: Add more mappings
 BROADCAST_MESSAGE_MAP = {
     "bad battery": "bad_battery",
     "bateria com problemas": "bad_battery",
+    "ac fails": "ac_fails",
+    "restored ac": "ac_restored"
 }
 
 def login(session):
@@ -134,11 +137,6 @@ def get_status():
         decoded_message = html.unescape(raw_message).strip().lower().replace("\\n", "").replace("\n", "").strip()
         normalized_message = BROADCAST_MESSAGE_MAP.get(decoded_message, decoded_message)
         info_status["broadcast_message"] = normalized_message
-
-    if info_status.get("broadcast_message") == "bad_battery" and info_status.get("battery_fault") == "Off":
-        info_status["battery_health"] = "Bad"
-    else:
-        info_status["battery_health"] = "Good"
 
     result["info"] = info_status
 
