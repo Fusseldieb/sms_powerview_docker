@@ -18,10 +18,8 @@ LOGIN_URL = "http://127.0.0.1:8080/s2/checaSenha.action"
 STATUS_URL = "http://127.0.0.1:8080/s2/Monitores.action"
 INFO_URL = "http://127.0.0.1:8080/s2/atualizaInfo.action"
 
-# Password to authenticate (you can also use os.environ.get("WEB_PASSWORD"))
 WEB_PASSWORD = os.environ.get("WEB_PASSWORD")
 
-# Fixed list of status keys in the same order as they appear in the HTML
 STATUS_ORDER = [
     "input_voltage",
     "ups_load",
@@ -31,7 +29,6 @@ STATUS_ORDER = [
     "temperature"
 ]
 
-# Mapping from internal status keys to readable English names
 STATUS_KEY_MAP = {
     "statusups": "ups",
     "statusbateria": "battery",
@@ -62,16 +59,14 @@ def login(session):
 def get_status():
     result = {}
 
-    # Start a session to persist cookies (especially JSESSIONID)
     session = requests.Session()
 
-    # Step 1: Authenticate if WEB_PASSWORD is provided
+    # Authenticate if WEB_PASSWORD is provided
     if WEB_PASSWORD:
         success, error = login(session)
         if not success:
             return jsonify({"error": error}), 401
 
-    # Step 2: Fetch status panels
     try:
         response = session.get(STATUS_URL, timeout=5)
         response.raise_for_status()
@@ -106,7 +101,6 @@ def get_status():
 
     result["status"] = status_data
 
-    # Step 3: Fetch dynamic info
     try:
         info_response = session.get(INFO_URL, timeout=5)
         info_response.raise_for_status()
@@ -115,7 +109,6 @@ def get_status():
 
     info_text = info_response.text
 
-    # Extract status switches
     status_matches = re.findall(r'muda\("([^"]+)",\s*\'([^\']+)\'\)', info_text)
 
     info_status = {}
@@ -124,15 +117,9 @@ def get_status():
         mapped_key = STATUS_KEY_MAP.get(key_lower, key_lower)
         info_status[mapped_key] = value
 
-    # Extract shutdown time
     shutdown_match = re.search(r'\$\("#cronometroShutdown"\)\.html\("([^"]+)"\)', info_text)
     if shutdown_match:
         info_status["time_for_shutdown"] = shutdown_match.group(1)
-
-    # Extract shutdown title
-    title_match = re.search(r'\$\("#tituloMensagem"\)\.html\("([^"]+)"\)', info_text)
-    if title_match:
-        info_status["shutdown_title"] = title_match.group(1)
 
     result["info"] = info_status
 
