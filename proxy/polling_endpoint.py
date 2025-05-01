@@ -32,11 +32,16 @@ STATUS_ORDER = [
 STATUS_KEY_MAP = {
     "statusups": "battery_fault",
     "statusbateria": "battery_charge",
-    "statusredeeletrica": "power_grid",
+    "statusredeeletrica": "power_grid_connected",
     "statusteste": "battery_selftest",
     "statusalerta": "alerta24h_enabled",
     "statusgatewaymobile": "mobile_server_enabled",
     "statuspotenciaelevada": "high_ups_load",
+}
+
+BROADCAST_MESSAGE_MAP = {
+    "bad battery": "bad_battery",
+    "bateria com problemas": "bad_battery",
 }
 
 def login(session):
@@ -120,6 +125,18 @@ def get_status():
     shutdown_match = re.search(r'\$\("#cronometroShutdown"\)\.html\("([^"]+)"\)', info_text)
     if shutdown_match:
         info_status["time_for_shutdown"] = shutdown_match.group(1)
+
+    # Extract and normalize broadcast message
+    broadcast_match = re.search(r'\$\("#mensagemBroadcast"\)\.html\("([^"]+)"\)', info_text)
+    if broadcast_match:
+        raw_message = broadcast_match.group(1).strip().lower()
+        normalized_message = BROADCAST_MESSAGE_MAP.get(raw_message, raw_message)
+        info_status["broadcast_message"] = normalized_message
+
+    if info_status.get("broadcast_message") == "bad_battery" and info_status.get("battery_fault") == "Off":
+        info_status["battery_health"] = "Bad"
+    else:
+        info_status["battery_health"] = "Good"
 
     result["info"] = info_status
 
