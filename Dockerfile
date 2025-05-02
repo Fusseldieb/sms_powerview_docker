@@ -1,33 +1,29 @@
-FROM debian:bullseye-slim
+FROM alpine:3.14
 
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 ENV TERM=xterm
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        openjdk-11-jre \
-        libusb-1.0-0-dev \
-        wget \
+RUN apk update && \
+    apk add --no-cache \
+        openjdk11-jre-headless \
+        libusb-dev \
         tar \
-        sudo \
         bash \
-        nano \
         expect \
         python3 \
-        python3-pip \
-        python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+        py3-pip \
+        py3-virtualenv
 
 RUN mkdir -p /opt/sms /opt/powerview /opt/app
 
-COPY install_SMS.tar.gz /opt/sms/
-COPY install_spv.exp /opt/sms/
+COPY install/linux.tar.gz /opt/sms/
+COPY install/automate_install.exp /opt/sms/
 
 WORKDIR /opt/sms
-RUN tar -xzvf install_SMS.tar.gz && rm install_SMS.tar.gz
-RUN chmod +x /opt/sms/install_spv.exp
-RUN /opt/sms/install_spv.exp
+RUN tar -xzvf linux.tar.gz && rm linux.tar.gz
+RUN chmod +x /opt/sms/automate_install.exp
+RUN /opt/sms/automate_install.exp || true  # in case expect script exits unexpectedly
 RUN chmod +x /opt/powerview/powerview
 
 COPY proxy/requirements.txt /opt/app/
@@ -38,4 +34,15 @@ RUN python3 -m venv venv && \
     . venv/bin/activate && \
     pip install --no-cache-dir -r requirements.txt
 
-CMD ["/bin/bash", "-c", "/opt/powerview/powerview start --no-gui -d && source /opt/app/venv/bin/activate && python /opt/app/polling_endpoint.py & tail -f /dev/null"]
+COPY install/entrypoint.sh /entrypoint.sh
+
+# Remove the installer
+RUN rm -rf /opt/sms
+
+RUN chmod +x /entrypoint.sh
+
+# Creates a copy of the database, so the original one is not modified
+# The database will be copies once again to another location when entrypoint.sh is executed
+COPY overrides/database.yap /opt/db/database.yap
+
+ENTRYPOINT ["/entrypoint.sh"]
