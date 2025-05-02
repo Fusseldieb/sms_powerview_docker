@@ -90,6 +90,7 @@ docker-compose down
 docker-compose build --no-cache
 docker-compose up -d
 ```
+This is **NOT** needed if you only change the `.env` file.
 
 ### Which devices are compatible?
 Most likely most of their (older) lineup should. I'm using a "SMS Power Sinus II".
