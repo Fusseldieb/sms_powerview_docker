@@ -1,7 +1,7 @@
 # SMS PowerView [Docker]
 
 Quick solution to run the "SMS PowerView" Java app inside a docker container.
-Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it should straight up work. Just start the container, that's all.
+Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it should straight up work. Just start the container - that's all.
 
 ![smspowerview](https://github.com/Fusseldieb/sms_powerview_docker/blob/main/smspowerview.png)
 
@@ -20,8 +20,7 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 - Copy `.env.example` to `.env` and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number). Leave blank for no connection.
 - Execute: `docker compose up --build -d`.
 
-In a few moments it should then come up at `localhost:8080
-`. By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
+In a few moments it should then come up at `localhost:8080`. By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
 
 Stopping the container is as easy as using `docker compose down`.
 
@@ -111,7 +110,7 @@ Further compatible devices, as per documentation:
 Please open an Issue if there's any incorrect information.
 
 ### Why don't you use `nut` instead?
-I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from PowerView, but I hadn't time for that. 
+I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from PowerView, but I hadn't had time for that. 
 
 ### 'X' doesn't work! What gives?
 This project wasn't actually tested on other machines. I just needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
