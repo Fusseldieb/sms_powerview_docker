@@ -1,6 +1,6 @@
-# SMS PowerView [Docker]
+# SMS Power View [Docker]
 
-Quick solution to run the "SMS PowerView" Java app inside a docker container.
+Quick solution to run the "SMS Power View" Java app inside a docker container.
 Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it should straight up work. Just start the container - that's all.
 
 ![smspowerview](https://github.com/Fusseldieb/sms_powerview_docker/blob/main/powerview_preview.png)
@@ -9,9 +9,9 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 
 ### Features
 
-- Provides the official SMS PowerView dashboard
+- Provides the official SMS Power View dashboard
 - Provides a JSON endpoint to the system monitor - great for use in third-party software, such as Home Assistant, etc.
-- Latest known version of SMS PowerView
+- Latest known version of SMS Power View
 - Internal known-working database
 - Keeps the host system free of dependencies thanks to Docker
 
@@ -20,7 +20,7 @@ Given your system exposes `/dev/ttyUSB0` when plugging in a compatible UPS, it s
 - Copy `.env.example` to `.env` and put in your Serial port. If on Linux, it's likely `/dev/ttyUSB0`, on Windows `COMx` (**x** being a number). Leave blank for no connection.
 - Execute: `docker compose up --build -d`.
 
-In a few moments it should then come up at `localhost:8080`. By default, SMS PowerView listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
+In a few moments it should then come up at `localhost:8080`. By default, SMS Power View listens on port `8080` and the JSON Endpoint on port `5000`. Feel free to re-route it via the `.env` file though. Use the `.env.example` as a reference.
 
 Stopping the container is as easy as using `docker compose down`.
 
@@ -77,7 +77,7 @@ Stopping the container is as easy as using `docker compose down`.
 ```
 
 ### Protecting using a password
-If you want to protect the SMS PowerView interface with a password, you can do that. For that you'll need to also set the password in `.env` using the `WEB_PASSWORD` variable in order for JSON requests to authenticate correctly. 
+If you want to protect the SMS Power View interface with a password, you can do that. For that you'll need to also set the password in `.env` using the `WEB_PASSWORD` variable in order for JSON requests to authenticate correctly. 
 
 ### Starting over
 As you might know, this application has a database, and with sufficiently wrong configurations you could get locked out. Therefore, to reset the state, just delete the `db` folder and restart the container, which will re-initialize the database to a known-good state.
@@ -110,7 +110,7 @@ Further compatible devices, as per documentation:
 Please open an Issue if there's any incorrect information.
 
 ### Why don't you use `nut` instead?
-I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from PowerView, but I hadn't had time for that. 
+I've tried, but unfortunately, no driver is compatible with my particular model. It could be reverse-engineered from Power View, but I hadn't had time for that. 
 
 ### 'X' doesn't work! What gives?
 This project wasn't actually tested on other machines. I just needed a quick way to spin this up without making my host system messy with Java and other dependencies, so I 'made it work' and shared it, so it could be useful for more people.
