@@ -72,6 +72,7 @@ while kill -0 "$JAVA_PID" 2>/dev/null; do
         EXIT_CODE=1
         cleanup
     fi
+    sleep 2
 done
 
 echo "❌ PowerView Java process exited unexpectedly."
